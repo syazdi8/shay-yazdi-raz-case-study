@@ -1,0 +1,319 @@
+<!doctype html>
+<html lang="en-GB">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Shay Yazdi Raz | Ruby &amp; Pita Bot case study</title>
+<meta name="description" content="A case study by Shay Yazdi Raz: how a podcast's research chore became a working, human-approved editorial app, and what testing showed about what not to ship.">
+<meta name="author" content="Shay Yazdi Raz">
+<meta property="og:type" content="website">
+<meta property="og:title" content="Ruby &amp; Pita Bot: a product case study by Shay Yazdi Raz">
+<meta property="og:description" content="A private, phone-first, human-approved editorial app for a real Hebrew football podcast, and the tests that decided what to hold back.">
+<link rel="icon" href="assets/favicon.svg" type="image/svg+xml">
+<link rel="stylesheet" href="assets/style.css">
+</head>
+<body>
+<a class="skip" href="#main">Skip to content</a>
+
+<header class="site-header">
+  <div class="wrap">
+    <a class="brand" href="#top">Shay Yazdi Raz</a>
+    <nav class="site-nav" aria-label="Page sections">
+      <ul>
+        <li><a href="#proof">Proof</a></li>
+        <li><a href="#product">Product</a></li>
+        <li><a href="#decisions">Decisions</a></li>
+        <li><a href="#method">Method</a></li>
+        <li><a href="#contact">Contact</a></li>
+      </ul>
+    </nav>
+  </div>
+</header>
+
+<main id="main">
+
+  <section class="hero" id="top" aria-labelledby="hero-title">
+    <div class="wrap hero-grid">
+      <div>
+        <p class="eyebrow">Independent project, 2026 · Case study</p>
+        <h1 id="hero-title">From a podcast’s research chore to a working, human-approved app.</h1>
+        <p class="lede">Ruby &amp; Pita Bot is a private mobile editorial workspace that I run, built for the Hebrew podcast I co-host about English football outside the Premier League. A working pilot, deployed privately, took real club news through review on a physical iPhone, with a person in charge of every post. My testing also showed which parts were not ready, and I held those back.</p>
+        <p class="role-line"><strong>My role:</strong> product owner. I defined the problem and scope, wrote the requirements, set the technical direction and priorities, tested the results, made the risk calls and decided what shipped.</p>
+        <div class="btn-row">
+          <a class="btn btn-primary" href="#proof">See the proof</a>
+          <a class="btn btn-ghost" href="#contact">Discuss it with me</a>
+        </div>
+      </div>
+
+      <ul class="ledger" aria-label="Key facts">
+        <li>
+          <span class="num">60</span>
+          <p>real items ingested from three official club feeds in a supervised pilot
+            <span class="when">October 2026</span></p>
+        </li>
+        <li>
+          <span class="num">1</span>
+          <p>real story taken end to end on a physical iPhone: reviewed, edited in Hebrew, approved and opened in X’s composer
+            <span class="when">Private deployment, October 2026</span></p>
+        </li>
+        <li>
+          <span class="num word">Manual</span>
+          <p>publishing, by design. The app cannot post: a person presses Post in X’s own composer.
+            <span class="when">A deliberate human boundary</span></p>
+        </li>
+      </ul>
+    </div>
+  </section>
+
+  <section class="shows" aria-labelledby="shows-title">
+    <div class="wrap">
+      <h2 id="shows-title">What this project shows</h2>
+      <ul>
+        <li>
+          <h3>Requirements to a working system</h3>
+          <p>A phone-first review flow with sign-in, evidence, an audit trail and human approval, deployed privately and tested end to end on a real iPhone.</p>
+        </li>
+        <li>
+          <h3>Product judgement</h3>
+          <p>Scope, priorities and a change of course when pilot data showed the feed was the wrong thing to scale.</p>
+        </li>
+        <li>
+          <h3>Risk and operations</h3>
+          <p>Publisher rights, legal wording, a kill switch and a $0 recurring budget treated as design inputs, not afterthoughts.</p>
+        </li>
+        <li>
+          <h3>A tester’s habits</h3>
+          <p>Looking for false confidence: output that passes validation but would still mislead a reader.</p>
+        </li>
+      </ul>
+    </div>
+  </section>
+
+  <section class="block" id="problem" aria-labelledby="problem-title">
+    <div class="wrap split">
+      <div>
+        <p class="eyebrow">The problem</p>
+        <h2 id="problem-title">Football has more stories than anyone can chase.</h2>
+      </div>
+      <div>
+        <p class="section-intro">I co-host The Ruby &amp; Pita Show, which covers the Championship, League One, League Two and the National League in Hebrew. The good stories sit in local papers and club statements, mixed in with ticket offers and kit launches, and finding them is daily research. A tool that only collects headlines would add a chore. The real job is to surface the few stories worth our time, say how far each one can be trusted, and leave the decision with a person. Today my co-host and I find stories by hand, across club sites and local papers, before each episode.</p>
+        <blockquote class="principle">
+          <p>Zero worthwhile posts is better than twenty club press releases.</p>
+          <cite>A product rule I set</cite>
+        </blockquote>
+      </div>
+    </div>
+  </section>
+
+  <section class="block" id="proof" aria-labelledby="proof-title">
+    <div class="wrap">
+      <p class="eyebrow">Proof</p>
+      <h2 id="proof-title">What exists, and how well it is proven.</h2>
+      <p class="section-intro">Three levels, kept apart on purpose. Everything below is from October 2026. These are pilot and test results, not usage or accuracy figures.</p>
+
+      <div class="ladder">
+        <section class="level" aria-labelledby="lvl-live">
+          <div>
+            <span class="pill pill-live">Deployed and observed</span>
+            <h3 id="lvl-live">Seen working on real infrastructure</h3>
+          </div>
+          <div>
+            <ul>
+              <li>A private, phone-friendly web app behind sign-in, hosted on a free-tier cloud VM and reachable only through a private tunnel.</li>
+              <li>Real intake: 60 items from three official club RSS feeds, supervised. Most were publicity. The feeds were switched off afterwards.</li>
+              <li>The whole review path on a physical iPhone: sign in, open a real candidate with its score, evidence and audit trail, edit the Hebrew, approve it, and open X’s composer. No post was sent.</li>
+            </ul>
+          </div>
+        </section>
+
+        <section class="level" aria-labelledby="lvl-local">
+          <div>
+            <span class="pill pill-local">Built and tested locally</span>
+            <h3 id="lvl-local">Works in tests, not shown live</h3>
+          </div>
+          <div>
+            <ul>
+              <li>An AI drafting path: one worker run turned a fictional feed into an unapproved Hebrew draft with an audit trail, using one real model call, and a second run did nothing. A separate six-case evaluation brought the total to seven real calls, at no charge. All of it ran in an isolated local database.</li>
+              <li>A research desk and an episode desk, in Hebrew and right to left. They keep a model’s research proposals apart from verified evidence and require a person to check each claim. They were checked in a simulated phone browser, not on a physical phone. That pass found four defects (an overflowing layout, bars covering the typing area, a wrong sign-in landing page, copy buttons reporting success when the clipboard refused), all fixed with regression tests.</li>
+              <li>A strict hand-off check for research done in ChatGPT. Its first real run was refused because two claims were labelled as fact without solid support, and the rules were tightened.</li>
+            </ul>
+          </div>
+        </section>
+
+        <section class="level" aria-labelledby="lvl-gap">
+          <div>
+            <span class="pill pill-gap">Not proven yet</span>
+            <h3 id="lvl-gap">The hard editorial job</h3>
+          </div>
+          <div>
+            <ul>
+              <li>Reliable, lawful discovery of original and local stories at scale. Research found useful leads but no broad set of sources that may be read automatically and sent to a model.</li>
+              <li>Hebrew drafts good enough to publish. The first real model responses were not.</li>
+              <li>Selection that separates real news from club publicity, and corroboration that counts only independent reporting.</li>
+              <li>Anything unattended: AI drafting on the live server, scheduling or automatic posting. On the deployed pilot these are all switched off.</li>
+            </ul>
+            <p class="small note">Deployed pilot status as of 27 October 2026, to the best of my knowledge.</p>
+          </div>
+        </section>
+      </div>
+    </div>
+  </section>
+
+  <section class="block" id="product" aria-labelledby="product-title">
+    <div class="wrap">
+      <p class="eyebrow">The product</p>
+      <h2 id="product-title">What it looks like on a phone.</h2>
+      <p class="section-intro">Screens from the real application, filled with the invented demo stories it ships with. No real publisher text, accounts or addresses appear. The first two were captured from a newer local build of the review interface, not the exact version deployed in the pilot. The third is the research desk, which is not deployed.</p>
+
+      <div class="screens">
+        <figure class="shot">
+          <div class="phone"><img src="assets/screens/review-queue.jpg" width="780" height="1688" loading="lazy" alt="Phone screenshot of the review queue. Three fictional demo stories are listed, each with a risk tier badge (R1, R1 and R3), a priority score and its age. Navigation buttons read Queue, Tip, History and Sources."></div>
+          <figcaption><b>1. Review queue</b>Each story carries a risk tier from R0 to R3, a priority score, and its age.<span class="tag">Invented demo data</span></figcaption>
+        </figure>
+        <figure class="shot">
+          <div class="phone"><img src="assets/screens/risk-tier-detail.jpg" width="780" height="1688" loading="lazy" alt="Phone screenshot of a story detail page for a fictional report that a manager faces an investigation. It is marked R3 allegation or legal, and the text advises treating it as an unproven claim, keeping attribution and the denial, and seeking a primary record or a second source."></div>
+          <figcaption><b>2. A legal-risk story</b>An allegation with a denial is tiered R3. The app says to treat it as unproven and keep the denial. An R3 story cannot be approved unless the reviewer confirms they checked the evidence and writes a note.<span class="tag">Invented demo data</span></figcaption>
+        </figure>
+        <figure class="shot">
+          <div class="phone"><img src="assets/screens/research-desk-hebrew.jpg" width="780" height="1688" loading="lazy" alt="Phone screenshot of the Hebrew, right-to-left research desk. A banner says the proposals were written by an external model and that nothing has been approved or published. Two fictional story proposals are shown, each marked as the model's rating, with a count of claims checked by a person."></div>
+          <figcaption><b>3. Research desk, in Hebrew</b>A banner says these are model-written proposals and that nothing is approved or published. Each card shows how many claims a person has checked: here, none of five.<span class="tag">Local build, invented data</span></figcaption>
+        </figure>
+      </div>
+    </div>
+  </section>
+
+  <section class="block" id="decisions" aria-labelledby="decisions-title">
+    <div class="wrap">
+      <p class="eyebrow">Decisions</p>
+      <h2 id="decisions-title">Five calls I made from the evidence.</h2>
+      <p class="section-intro">The most useful results were not green checks. They were places where something that technically worked still failed the editorial job.</p>
+
+      <div class="decisions">
+        <article class="decision" aria-labelledby="d1">
+          <header><span class="n" aria-hidden="true">1</span><h3 id="d1">A working feed is not a working product</h3></header>
+          <dl>
+            <div><dt>The call</dt><dd>Stop adding feeds after the pilot and put the effort into finding and selecting original stories.</dd></div>
+            <div><dt>What the test showed</dt><dd>A supervised pilot on real club feeds worked technically: 60 real items. Most were ticket sales, kit launches and sponsor news, not stories.</dd></div>
+            <div><dt>What changed</dt><dd>Option not taken: more club feeds, which would only have grown the queue with more publicity. The feeds were switched off, and discovery and selection moved to the top of the roadmap.</dd></div>
+          </dl>
+        </article>
+
+        <article class="decision" aria-labelledby="d2">
+          <header><span class="n" aria-hidden="true">2</span><h3 id="d2">Valid output is not publishable Hebrew</h3></header>
+          <dl>
+            <div><dt>The call</dt><dd>Test a real model on invented football cases before letting it near real ones.</dd></div>
+            <div><dt>What the test showed</dt><dd>All six responses passed the format check. Rated provisionally against a written rubric, with a human rating still to come, one needed minor edits, one moderate, three a major rewrite, and one wrongly declined to draft. “Alleged comments” became “presumed reactions”, and the app’s automated Hebrew checks missed it.</dd></div>
+            <div><dt>What changed</dt><dd>AI drafting stays off on the deployed app and no model key is installed on the server. Prompts stay untouched until a person has rated drafts against verified examples.</dd></div>
+          </dl>
+        </article>
+
+        <article class="decision" aria-labelledby="d3">
+          <header><span class="n" aria-hidden="true">3</span><h3 id="d3">Ranked is not corroborated</h3></header>
+          <dl>
+            <div><dt>The call</dt><dd>Measure the scoring rules offline before trusting them.</dd></div>
+            <div><dt>What the test showed</dt><dd>On 30 labelled cases, mostly invented, 10 of 11 uninteresting items still reached the queue. Syndicated copies counted as independent confirmation.</dd></div>
+            <div><dt>What changed</dt><dd>A redesign into three lanes: archive obvious noise with a reason, fast-track strong stories, hold ambiguous ones for research. Corroboration will need independent publishers. Designed, not yet built.</dd></div>
+          </dl>
+        </article>
+
+        <article class="decision" aria-labelledby="d4">
+          <header><span class="n" aria-hidden="true">4</span><h3 id="d4">Rights are three separate questions</h3></header>
+          <dl>
+            <div><dt>The call</dt><dd>Treat reading a page, storing its text and sending it to a model as three permissions, recorded per publisher.</dd></div>
+            <div><dt>What the test showed</dt><dd>At the time of testing, no real publisher in the catalogue allowed its text to go to a model, so the app’s own rules did not permit a real-source AI draft.</dd></div>
+            <div><dt>What changed</dt><dd>The model test used a fictional source instead of loosening a permission to pass. Each piece of evidence records the permission it was captured under, and the stricter of that and today’s policy always applies.</dd></div>
+          </dl>
+        </article>
+
+        <article class="decision" aria-labelledby="d5">
+          <header><span class="n" aria-hidden="true">5</span><h3 id="d5">Holding back a demo that proved little</h3></header>
+          <dl>
+            <div><dt>The call</dt><dd>Hold back a live demo of an AI-written draft on the iPhone.</dd></div>
+            <div><dt>What the test showed</dt><dd>It would have taken the only working deployment offline for 30 to 40 minutes to display a pre-generated, invented draft, which proves little beyond the local test.</dd></div>
+            <div><dt>What changed</dt><dd>Not run. The pilot stayed up, and the local test remains the evidence for AI drafting.</dd></div>
+          </dl>
+        </article>
+      </div>
+    </div>
+  </section>
+
+  <section class="block method" id="method" aria-labelledby="method-title">
+    <div class="wrap">
+      <p class="eyebrow">Method</p>
+      <h2 id="method-title">How I run it.</h2>
+
+      <div class="cols">
+        <div>
+          <h3>What I own</h3>
+          <ul class="checklist">
+            <li>The problem, the user journey and the scope.</li>
+            <li>Requirements and acceptance checks for each slice of work.</li>
+            <li>Constraints: cost, publisher rights, security and legal risk.</li>
+            <li>The roadmap order, changed when the evidence says so.</li>
+            <li>The supervised real-world tests, including the iPhone pilot.</li>
+            <li>The decision to ship, hold or revise.</li>
+          </ul>
+        </div>
+        <div>
+          <h3>How delivery works</h3>
+          <ul class="checklist">
+            <li>Small, scoped changes through pull requests, merged only with green CI: 32 between 7 and 21 October 2026.</li>
+            <li>An automated suite of 2,483 tests (CI, 21 October 2026), a secret scan and a dependency audit on every change.</li>
+            <li>A human approval step before anything live, costly or published.</li>
+            <li>Implementation was AI-assisted, working from the specifications and acceptance checks I wrote.</li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="tech">
+        <h3>Technical notes</h3>
+        <dl>
+          <div><dt>Stack</dt><dd>Python 3.13, Django 5.2, SQLite with one background worker, server-rendered pages and four direct runtime dependencies. No queue, cache or frontend framework: nothing so far has needed one.</dd></div>
+          <div><dt>One door to the model</dt><dd>Every model request the app makes goes through one gateway that is off by default, allows only approved provider and model pairs, rebuilds the request from the database and enforces a daily cap.</dd></div>
+          <div><dt>Fail closed</dt><dd>robots.txt is obeyed and anything unclear blocks fetching. Paywalls and bot blocks are never bypassed. Every source ships disabled, and a global pause stops every publishing step.</dd></div>
+          <div><dt>Human hand-off</dt><dd>The app opens X’s own composer with the approved text, so it has no X API client, no stored X credentials and no automatic posting.</dd></div>
+          <div><dt>Cost</dt><dd>Recurring infrastructure and API cost is $0 on free tiers, with documented limits. Development used existing AI subscriptions and a single one-off $10 credit.</dd></div>
+        </dl>
+      </div>
+    </div>
+  </section>
+
+  <section class="block" id="next" aria-labelledby="next-title">
+    <div class="wrap split">
+      <div>
+        <p class="eyebrow">What comes next</p>
+        <h2 id="next-title">Unfinished, on purpose.</h2>
+        <p class="section-intro">The pilot shows the review path works end to end on a phone. It does not yet prove the harder editorial job. Success is a queue my co-host and I would actually use: most items that reach it are stories we would discuss on the show, and club publicity is archived with a reason. I have not set numeric targets yet.</p>
+      </div>
+      <ol class="next-list">
+        <li>Try the newer desks with my co-host on real phones, the cheapest way to learn whether the queue is worth building out.</li>
+        <li>Lawful access to original and local sources.</li>
+        <li>Selection lanes, and corroboration from independent publishers only.</li>
+        <li>Verifying high-impact claims without taking a model’s word for it.</li>
+        <li>Human scoring of Hebrew drafts against verified examples.</li>
+      </ol>
+    </div>
+  </section>
+
+  <section class="contact" id="contact" aria-labelledby="contact-title">
+    <div class="wrap">
+      <p class="eyebrow">Contact</p>
+      <h2 id="contact-title">Want the walkthrough?</h2>
+      <p>The application and its repository are private. I’m happy to walk through the pilot, the tests and the decisions behind it in an interview, on a call or in person. I am interested in AI builder, product operations, product, implementation and QA roles.</p>
+      <ul class="contact-list">
+        <li><b>Email</b> <a href="mailto:syazdi8@gmail.com">syazdi8@gmail.com</a></li>
+        <li><b>LinkedIn</b> <a href="https://www.linkedin.com/in/shay-yazdi-raz-7330141b5/">linkedin.com/in/shay-yazdi-raz-7330141b5</a></li>
+      </ul>
+    </div>
+  </section>
+
+</main>
+
+<footer class="site-footer">
+  <div class="wrap">
+    <p>Shay Yazdi Raz · Independent project, October 2026 · Evidence reviewed 27 October 2026.</p>
+    <p>Screens show invented demo data. No third-party article text, publisher images, private addresses or credentials appear on this page.</p>
+  </div>
+</footer>
+</body>
+</html>
